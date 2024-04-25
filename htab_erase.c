@@ -1,3 +1,7 @@
+// Author: Tomáš Lajda <xlajdat00>
+// Date: 2024-04-25
+// Description: Erase item from hash table
+
 #include "htab.h"
 #include "htab_private.h"
 
@@ -22,7 +26,7 @@ bool htab_erase(htab_t * t, htab_key_t key) {
             
             return true;
         }
-        
+
         prev = item;
         item = item->next;
     }

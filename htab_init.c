@@ -1,6 +1,6 @@
 // Author: Tomáš Lajda <xlajdat00>
 // Date: 2024-04-25
-// Description: Implementation of htab_init function
+// Description: Initializes hash table
 
 #include "htab.h"
 #include "htab_private.h"
@@ -8,7 +8,7 @@
 htab_t *htab_init(size_t n) {
   htab_t *t = malloc(sizeof(htab_t) + n * sizeof(htab_item_t *));
   if (t == NULL) {
-    exit(EXIT_FAILURE);
+    return NULL;
   }
 
   t->arr_size = n;

@@ -1,6 +1,6 @@
 // Author: Tomáš Lajda <xlajdat00>
 // Date: 2024-04-25
-// Description: Header file for hash table private members
+// Description: Header file for private hash table members
 
 #ifndef HTAB_H_PRIVATE__
 #define HTAB_H_PRIVATE__
