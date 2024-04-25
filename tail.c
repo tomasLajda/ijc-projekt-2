@@ -89,9 +89,7 @@ void cbuf_put(cb* buffer, char* line) {
 
 char* cbuf_get(cb* buffer) {
   if(buffer->lines[buffer->start] == NULL) {
-    cbuf_free(buffer);
-    fprintf(stderr, "Error: Buffer is empty\n");
-    exit(EXIT_FAILURE);
+    return NULL;
   }
 
   if(buffer->start + 1 == buffer->size) {
@@ -108,8 +106,10 @@ int main(int argc, char* argv[]) {
   int bufferSize = DEFAULT_SIZE_BUFFER;
 
   if (argc > 2 && strcmp(argv[1], "-n") == 0) {
-    bufferSize = atoi(argv[2]);
-    if (bufferSize <= 0) {
+    char *endptr;
+    bufferSize = strtol(argv[2], &endptr, 10);
+
+    if (*endptr != '\0' || bufferSize < 0) {
       fprintf(stderr, "Error: Invalid buffer size\n");
       exit(EXIT_FAILURE);
     }
@@ -141,6 +141,11 @@ int main(int argc, char* argv[]) {
     exit(EXIT_FAILURE);
   }
 
+  if(bufferSize == 0) {
+    fclose(file);
+    exit(EXIT_SUCCESS);
+  }
+
   cb* buffer = cbuf_create(bufferSize);
 
   char line[MAX_LINE_LENGTH];
@@ -168,9 +173,12 @@ int main(int argc, char* argv[]) {
 
   do {
     char* line = cbuf_get(buffer);
+    if(line == NULL) {
+      break;
+    }
 
     printf("%s", line);
-  } while (buffer->start != buffer->end);
+  } while (buffer->start != buffer->end && line != NULL);
 
   cbuf_free(buffer);
   exit(EXIT_SUCCESS);
