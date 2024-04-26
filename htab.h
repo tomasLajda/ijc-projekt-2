@@ -8,10 +8,11 @@
 #ifndef HTAB_H__
 #define HTAB_H__
 
-#include <string.h>     // size_t
-#include <stdbool.h>    // bool
-#include <stdint.h>     // uint32_t
+#include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>     // uint32_t
+#include <stdbool.h>    // bool
+#include <string.h>     // size_t
 
 
 // Tabulka:
