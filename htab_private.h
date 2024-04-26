@@ -2,8 +2,8 @@
 // Date: 2024-04-25
 // Description: Header file for private hash table members
 
-#ifndef HTAB_H_PRIVATE__
-#define HTAB_H_PRIVATE__
+#ifndef HTAB_PRIVATE_H__
+#define HTAB_PRIVATE_H__
 
 #include "htab.h"
 
@@ -17,7 +17,7 @@ typedef struct htab_item htab_item_t;
 struct htab {
     size_t arr_size;
     size_t size;
-    htab_item_t *arr[];
+    htab_item_t **arr;
 };
 
-#endif // HTAB_H__
+#endif // HTAB_PRIVATE_H__
