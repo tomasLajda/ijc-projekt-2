@@ -29,8 +29,15 @@ int main() {
         return 1;
     }
 
+    int charCount = 0;
     char word[MAX_WORD_LEN];
-    while (read_word(word, MAX_WORD_LEN, stdin) != EOF) {
+    bool overflow = false;
+    while ((charCount = read_word(word, MAX_WORD_LEN, stdin)) != EOF) {
+        if(charCount >= MAX_WORD_LEN) {
+            overflow = true;
+            fprintf(stderr, "Warning: Word is too long. Max length supported is: %d.\n", MAX_WORD_LEN);
+        }
+
         if(word[0] != '\0') {
             htab_pair_t *pair = htab_lookup_add(t, word);
             if(pair == NULL) {
