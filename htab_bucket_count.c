@@ -1,3 +1,7 @@
+// Author: Tomáš Lajda <xlajdat00>
+// Date: 2024-04-25
+// Description: Returns number of buckets in hash table
+
 #include "htab.h"
 #include "htab_private.h"
 
